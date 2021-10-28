@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -25,11 +26,9 @@ public class Empleado implements Serializable {
 
     private String apellidos;
 
-    private String nombreEmpresa;
-
-    private String residencia;
+    private String email;
 
     //Se elige una asociacion bidireccional
     @OneToMany(mappedBy = "empleado")
-    private List<ClienteCoorporativo> clientesCoorporativos;
+    private List<ClienteCoorporativo> clientes= new ArrayList<>();
 }

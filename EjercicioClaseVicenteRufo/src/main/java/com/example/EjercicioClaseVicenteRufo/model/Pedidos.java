@@ -6,9 +6,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 @Entity
@@ -20,7 +23,11 @@ public class Pedidos  implements Serializable {
     @GeneratedValue
     private Long id;
 
-    private String name;
+    @CreatedDate
+    private LocalDateTime fechaCreacion;
+
+    @Enumerated(EnumType.STRING)
+    private EstadoPedido estadoPedido;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
@@ -29,13 +36,10 @@ public class Pedidos  implements Serializable {
 
     public void addCliente(Cliente c){
         cliente = c;
-        if (c.getPedidos()==null){
-            c.setPedidos(new ArrayList<>());
-            c.getPedidos().add(this);
+        c.getPedidos().add(this);
         }
-    }
     public void removeCliente(Cliente c){
-        cliente = null;
         c.getPedidos().remove(this);
+        cliente = null;
     }
 }

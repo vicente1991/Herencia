@@ -9,6 +9,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import java.time.LocalDateTime;
@@ -19,11 +20,10 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-@EntityListeners(AuditingEntityListener.class)
+@DiscriminatorValue("CI")
 public class ClienteIndividual extends Cliente{
 
-    private String residencia;
+    private int puntosAcumulados;
 
-    @CreatedDate
-    private LocalDateTime fechaCaducidad;
+
 }

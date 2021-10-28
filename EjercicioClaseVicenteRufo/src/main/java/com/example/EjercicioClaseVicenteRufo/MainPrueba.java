@@ -21,9 +21,9 @@ public class MainPrueba {
     private final ClienteRepository clienteRepository;
 
 
-    @PostConstruct
-    public void test(){
-        Cliente cliente1 = Cliente.builder()
+   @PostConstruct
+    public void test() {
+       /* Cliente cliente1 = Cliente.builder()
                 .nombre("Alejandro")
                 .direccion("Calle tolejos")
                 .build();
@@ -69,14 +69,13 @@ public class MainPrueba {
         clienteCoorporativoService.save(cliCorp1);
 
         ClienteCoorporativo clipCorp2 = (ClienteCoorporativo) ClienteCoorporativo.builder()
-                        .ingresos(10000)
-                        .nombre("Yo mismo")
-                        .direccion("Montequinto")
-                        .build();
+                .ingresos(10000)
+                .nombre("Yo mismo")
+                .direccion("Montequinto")
+                .build();
         clipCorp2.addEmpleado(empleado2);
-        clienteCoorporativoService.save(clipCorp2);
+        clienteCoorporativoService.save(clipCorp2);*/
 
-        
 
 
         System.out.println("Todos los clientes");

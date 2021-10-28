@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.util.ArrayList;
@@ -16,9 +17,10 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+@DiscriminatorValue("CC")
 public class ClienteCoorporativo extends Cliente{
 
-    private double ingresos;
+    private String nombreEmpresa;
 
     //Se elige una asociacion bidireccional
     @ManyToOne
@@ -30,13 +32,10 @@ public class ClienteCoorporativo extends Cliente{
 
     public void addEmpleado(Empleado e){
         empleado = e;
-        if(e.getClientesCoorporativos()==null){
-            e.setClientesCoorporativos(new ArrayList<>());
-            e.getClientesCoorporativos().add(this);
-        }
+        e.getClientes().add(this);
     }
     public void removeEmpleado(Empleado e){
+        e.getClientes().remove(this);
         empleado = null;
-        e.getClientesCoorporativos().remove(this);
     }
 }
